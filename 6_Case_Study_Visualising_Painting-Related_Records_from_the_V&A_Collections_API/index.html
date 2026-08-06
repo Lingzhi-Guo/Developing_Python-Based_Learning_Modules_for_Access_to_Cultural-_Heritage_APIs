@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>V&A Painting Records · Visual Interface</title>
+  <link rel="preconnect" href="https://framemark.vam.ac.uk">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-fade top" aria-hidden="true"></div>
+  <div class="page-fade bottom" aria-hidden="true"></div>
+
+  <header class="site-header glass-panel">
+    <a class="brand" href="#hero" aria-label="Go to top">V&A Painting Records</a>
+    <nav aria-label="Visualisation navigation">
+      <a href="#dashboard">Overview</a>
+      <a href="#timeline">Time</a>
+      <a href="#places">Place</a>
+      <a href="#colour">Colour</a>
+      <a href="#archive">Archive</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" type="button">Invert</button>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero-kicker">Visualising cultural heritage API data</div>
+      <h1>
+        Painting records<br>
+        as a living<br>
+        digital archive.
+      </h1>
+      <div class="hero-grid single">
+        <p class="hero-copy">An interface for exploring painting-related records retrieved from the V&A Collections API.</p>
+      </div>
+      <div class="hero-strip" id="heroStrip" aria-label="Featured artworks"></div>
+    </section>
+
+
+    <section class="intro-panel" id="dashboard">
+      <div>
+        <p class="section-label">Dataset overview</p>
+        <h2>From API records to visual evidence.</h2>
+      </div>
+      <div class="metric-grid" id="metricGrid"></div>
+    </section>
+
+    <section class="split-section" id="timeline">
+      <div class="section-title sticky-title">
+        <p class="section-label">Temporal distribution</p>
+        <h2>When are the objects dated?</h2>
+        <p>The line chart summarises the record count by century and shows how the painting-related sample changes over time.</p>
+      </div>
+      <div class="chart-card glass-panel">
+        <div class="chart-header">
+          <span>Records by century</span>
+          <small id="yearRange"></small>
+        </div>
+        <div id="centuryChart" class="line-chart"></div>
+      </div>
+    </section>
+
+    <section class="split-section reverse" id="places">
+      <div class="section-title sticky-title">
+        <p class="section-label">Geographical metadata</p>
+        <h2>Where do<br>the records<br>point?</h2>
+        <p>The bar chart makes visible the strongest place names in the metadata.</p>
+      </div>
+      <div class="chart-card glass-panel">
+        <div class="chart-header">
+          <span>Top places</span>
+          <small>Top 10 shown</small>
+        </div>
+        <div id="placeChart" class="bar-chart compact"></div>
+      </div>
+    </section>
+
+    <section class="colour-section" id="colour">
+      <div class="colour-copy">
+        <p class="section-label">Dominant colour</p>
+        <h2>A searchable colour wall.</h2>
+        <p>Each tile represents one object with an extracted dominant colour. Every six-digit hexadecimal code is converted directly to RGB and arranged with a locality-preserving colour key, keeping visually similar colours close together.</p>
+      </div>
+      <div id="colourWall" class="colour-wall"></div>
+      <aside class="colour-tooltip glass-panel" id="colourTooltip" aria-hidden="true"></aside>
+    </section>
+
+    <section class="archive-section" id="archive">
+      <div class="archive-heading">
+        <p class="section-label">Object archive</p>
+        <h2>Browse the paintings.</h2>
+      </div>
+      <div class="archive-controls glass-panel">
+        <input id="searchInput" type="search" placeholder="Search title, creator, place…" aria-label="Search records">
+        <select id="centurySelect" aria-label="Filter by century">
+          <option value="all">All centuries</option>
+        </select>
+        <select id="placeSelect" aria-label="Filter by place">
+          <option value="all">All places</option>
+        </select>
+        <select id="sortSelect" aria-label="Sort records">
+          <option value="year-asc">Year ↑</option>
+          <option value="year-desc">Year ↓</option>
+          <option value="title-asc">Title A–Z</option>
+          <option value="colour">Colour hue</option>
+        </select>
+      </div>
+      <div class="archive-meta" id="archiveMeta"></div>
+      <div class="card-grid" id="cardGrid"></div>
+      <div class="pagination glass-panel">
+        <button id="prevPage" type="button">Previous</button>
+        <span id="pageInfo"></span>
+        <button id="nextPage" type="button">Next</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>This interface is designed for thesis demonstration and exploratory analysis, not as a statistical representation of the whole V&A collection.</p>
+    <p class="designer-credit">Designed by Guo Lingzhi</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
